@@ -17,7 +17,12 @@ app.use(bodyParser.json())
 //configuracion global de rutas
 app.use(require('./routes/index'));
 
-
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+})
 
 mongoose.connect(process.env.URLDB, (err, res) => {
 
